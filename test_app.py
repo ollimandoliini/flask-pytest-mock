@@ -6,8 +6,6 @@ def patched():
 
 
 def test_test(app, monkeypatch):
-    result = app.get('/')
-
     monkeypatch.setattr(lib, "foo", patched)
-
+    result = app.get('/')
     assert result.data == b"2"
